@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>抽奖啦</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <style>
+            html, body {
+                height: 100%;
+            }
+
+            body {
+                background: #000000;
+                margin: 0;
+                font-family: Helvetica, sans-serif;;
+                overflow: hidden;
+                background: url(image/bg.jpg);
+                background-size: 100%;
+            }
+
+            a {
+                color: #ffffff;
+            }
+
+            #info {
+                position: absolute;
+                width: 100%;
+                color: #ffffff;
+                padding: 5px;
+                font-family: Monospace;
+                font-size: 13px;
+                font-weight: bold;
+                text-align: center;
+                z-index: 1;
+            }
+
+            #menu {
+                position: absolute;
+                bottom: 20px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .element {
+                width: 130px;
+                height: 180px;
+                box-shadow: 0px 0px 12px rgba(0, 255, 255, 0.5);
+                border: 1px solid rgba(127, 255, 255, 0.25);
+                text-align: center;
+                cursor: default;
+            }
+
+            .element:hover {
+                box-shadow: 0px 0px 12px rgba(0, 255, 255, 0.75);
+                border: 1px solid rgba(127, 255, 255, 0.75);
+            }
+
+            .element .number {
+                position: absolute;
+                top: 5px;
+                right: 20px;
+                font-size: 12px;
+                color: rgba(127, 255, 255, 0.75);
+                color: #d3ea16;
+            }
+
+            .element .symbol {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                font-size: 60px;
+                font-weight: bold;
+                color: rgba(255, 255, 255, 0.75);
+                text-shadow: 0 0 10px rgba(0, 255, 255, 0.95);
+            }
+
+            .element .symbol img {
+                display: none;
+            }
+
+            .element .details {
+                position: absolute;
+                bottom: 0px;
+                left: 0px;
+                right: 0px;
+                font-size: 16px;
+                color: rgba(127, 255, 255, 0.75);
+                color: #d3ea16;
+                font-weight: bold;
+
+            }
+
+            .opacityImg {
+                background: rgba(0, 0, 0, 0.4);
+            }
+
+            button {
+                color: rgba(127, 255, 255, 0.75);
+                color: #f52222;
+                background: transparent;
+                outline: 1px solid rgba(127, 255, 255, 0.75);
+                outline: 1px solid #f52222;
+                border: 0px;
+                padding: 5px 10px;
+                cursor: pointer;
+                font-size: 16px;
+                font-weight: bold;
+            }
+
+            button:hover, .button-active {
+                background-color: rgba(0, 255, 255, 0.5);
+                background-color: #f52222;
+                color: #fff;
+            }
+
+            button:active {
+                color: #fff;
+                background-color: rgba(0, 255, 255, 0.75);
+                background-color: #f52222;
+            }
+
+            .viewlucker {
+                position: absolute;
+                width: 180px;
+                height: 250px;
+                overflow: hidden;
+                text-align: center;
+                
+                
+                background: #cf2525;
+                display: none;
+                z-index: 2;
+            }
+            .viewlucker[index="0"] {
+                top: 70px;
+                left: 10px;
+            }
+            .viewlucker[index="1"] {
+                top: 320px;
+                left: 10px;
+            }
+            .viewlucker[index="2"] {
+                top: 70px;
+                right: 10px;
+            }
+            .viewlucker[index="3"] {
+                top: 320px;
+                right: 10px;
+            }
+
+            #lucker {
+                position: absolute;
+                width: 0;
+                height: 0;
+                overflow: hidden;
+                text-align: center;
+                left: calc(50% - 150px);
+                top: calc(50% - 230px);
+                background: #cf2525;
+                transform: rotate(180deg);
+                opacity: 0;
+                transition: 1s;
+                z-index: 2;
+            }
+            .lucker-container {
+                position: absolute;
+                width: 0;
+                height: 0;
+                overflow: hidden;
+                text-align: center;
+                left: calc(50% - 150px);
+                top: calc(50% - 230px);
+                background: #cf2525;
+                transform: rotate(180deg);
+                opacity: 0;
+                transition: 1s;
+                 z-index: 3;
+            }
+
+            #lucker button, .lucker-container button {
+                background: #fff;
+                color: #000;
+                border: solid 1px #df2a2a;
+                border-radius: 2px;
+                margin: 2px;
+            }
+
+            .name-text {
+                color: #cf2525;
+                position: absolute;
+                bottom: 18px;
+                right: 20px;
+                font-size: 25px;
+            }
+
+            #marker {
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.3);
+                display: none;
+                z-index: 1;
+            }
+
+            #select {
+                display: none;
+            }
+
+            #luckerList {
+                position: absolute;
+                right: -600px;
+                top: 70px;
+                width: 450px;
+                height: calc(100% - 100px);
+                overflow: auto;
+                background: red;
+                border-radius: 2px;
+                padding: 10px;
+                color: #d3ea16;
+                font-size: 20px;
+                transition: right 1s;
+            }
+
+            #luckerList[isshow='true'] {
+                /*执行动画*/
+                -webkit-animation: showBtn 0.5s infinite;
+                animation: showBtn 1s infinite;
+            }
+
+            /*
+            定义动画
+            */
+            @-webkit-keyframes showBtn {
+
+                10% {
+                    background: -webkit-radial-gradient(Circle, #f52222 28%, #f50b0b 30%, #d10b0b 48%, #a80707 60%);
+                    background: radial-gradient(Circle, #f52222 28%, #f50b0b 30%, #d10b0b 48%, #d20707 60%);
+                }
+
+                50% {
+                    background: -webkit-radial-gradient(Circle, #f52222 28%, #f50b0b 30%, #d10b0b 48%, #a80707 60%);
+                    background: radial-gradient(Circle, #d20707 28%, #f52222 30%, #f50b0b 48%, #d10b0b 60%);
+                }
+
+                100% {
+                    background: -webkit-radial-gradient(Circle, #f52222 28%, #f50b0b 30%, #d10b0b 48%, #a80707 60%);
+                    background: radial-gradient(Circle, #d10b0b 28%, #d20707 30%, #f52222 48%, #f50b0b 60%);
+                }
+            }
+
+            @-webkit-keyframes activeImg {
+
+                0% {
+                    /* background:radial-gradient(Circle,#47dddd 28%, #d3ea16 30%, #d10b0b 48%,#d20707 60%); */
+                    opacity: 1;
+                }
+
+                100% {
+                    /* background:radial-gradient(Circle,#d10b0b 28%, #d20707 30%, #f52222 48%,#f50b0b 60%); */
+                    opacity: 0;
+                }
+            }
+
+            @-webkit-keyframes activeSign {
+
+                0% {
+                    bottom: 0px;
+                }
+
+                100% {
+                    bottom: 100%;
+                }
+            }
+
+            #canvas {
+                /*z-index: -1;*/
+                position: absolute;
+            }
+
+            #setting {
+                position: absolute;
+                left: -600px;
+                top: 70px;
+                height: 580px;
+                overflow: auto;
+                border-radius: 2px;
+                padding: 10px;
+                color: #d3ea16;
+                font-size: 20px;
+                transition: left 1s;
+            }
+
+            #setting button {
+                margin: 10px;
+            }
+
+            .blooming > .details {
+                background: red;
+            }
+
+            .blooming img {
+                animation: activeImg 1s infinite;
+            }
+
+            .sliding {
+                background: red;
+            }
+
+            .sliding img {
+                opacity: 0;
+            }
+
+            .sliding > .details {
+                background: red;
+            }
+
+            .signTip {
+                color: #d3ea16;
+                font-size: 20px;
+                transition: top 5s;
+                position: fixed;
+                animation: activeSign 10s 1;
+            }
+
+            .lucker-img-container {
+                position: relative;
+                width: 10000px;
+                text-align: left;
+            }
+            .lucker-img-container img {
+                vertical-align: top;
+            }
+
+            #signNumCount {
+                color: #d3ea16;
+                font-weight: bold;
+            }
+
+            #marker-canvas {
+                z-index: 0;
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.3);
+            }
+
+            #time-input, #prizeNum-input {
+                color: #d10b0b;
+                margin-top: 10px;
+                border: solid 1px red;
+                height: 30px;
+                padding-left: 10px;
+            }
+
+            #sensitive {
+                margin: 10px;
+            }
+
+            .remove-btn {
+                cursor: pointer;
+                margin-left: 20px;
+                color: #000;
+            }
+            .outPutUser {
+                width: 310px;
+                height: 450px;
+                transform: rotate(0deg);
+                opacity: 1;
+            }
+        </style>
+    </head>
+    <body id="main-content">
+    <script src="./jquery-2.1.3.min.js"></script>
+    <script src="./three.js"></script>
+    <script src="./tween.min.js"></script>
+    <script src="./TrackballControls.js"></script>
+    <script src="./CSS3DRenderer.js"></script>
+    <canvas id="canvas"></canvas>
+    <div id="marker-canvas"></div>
+
+    <div id="container"></div>
+
+    <div id="menu">
+        <!-- <button id="sign">签到</button> -->
+        <button id="start">开始抽奖</button>
+        <button id="select">停止</button>
+        <button id="auto">自动停止</button>
+        <button id="stop">停止/转动</button>
+        <button id="discrease">《转速</button>
+        <button id="increase">转速》</button>
+        <button id="list">中奖名单</button>
+        <button id="config">设置</button>
+        <span id="signNumCount"></span>
+    </div>
+    <div id="setting">
+        <span>选择现在抽取的奖项：</span><br/>
+        <span id="setting-btn">
+                </span>
+        <br/>
+        <span>是否开启弹幕：</span><br/>
+        <button class="button-active" isshow="true" id="barrage">开启</button>
+        <br/>
+        <span>设置发言间隔：</span><br/>
+        <input id="time-input" type="number" min="0"/><span>&nbsp;s</span><br/>
+        <span>设置同时抽取数目：</span><br/>
+        <input id="prizeNum-input" type="number" min="1" max="4"/><span>&nbsp;个</span><br/>
+    </div>
+    <div id="luckerList"></div>
+    <div id="marker"></div>
+    <div class="lucker-container" index="0">
+        <button style="float:right" class="closeImg">关闭</button>
+        <img style="width:300px;height:400px" src=""><span class="name-text"></span></div>
+    <div class="lucker-container" index="1">
+        <button style="float:right" class="closeImg">关闭</button>
+        <img style="width:300px;height:400px" src=""><span class="name-text"></span></div>
+    <div class="lucker-container" index="2">
+        <button style="float:right" class="closeImg" >关闭</button>
+        <img style="width:300px;height:400px" src=""><span class="name-text"></span></div>
+    <div class="lucker-container" index="3">
+        <button style="float:right" class="closeImg">关闭</button>
+        <img style="width:300px;height:400px" src=""><span class="name-text"></span></div>
+
+
+    <div class="viewlucker"index="0">
+        <div class="lucker-img-container"><img style="width:200px;height:300px" src=""></div>
+    </div>
+    <div class="viewlucker" index="1">
+        <div class="lucker-img-container"><img style="width:200px;height:300px" src=""></div>
+    </div>
+    <div class="viewlucker" index="2">
+        <div class="lucker-img-container"><img style="width:200px;height:300px" src=""></div>
+    </div>
+    <div class="viewlucker" index="3">
+        <div class="lucker-img-container"><img style="width:200px;height:300px" src=""></div>
+    </div>
+
+    <script src="./contact.js"></script>
+    <script src="./main.js"></script>
+    <script src="./fileflower.js"></script>
+    </body>
+</html>
