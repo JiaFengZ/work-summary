@@ -5,20 +5,20 @@
 window下载安装.msi安装包，安装包会附带把node.js的包管理工具npm自动安装上。  
 
 安装完成后，查看node.js版本,cmd命令行：  
-	node -v
+	`node -v`
 
 查看npm版本，cmd命令行：  
-	npm -v
+	`npm -v`
 
 ## 1.2 npm 介绍
 npm 是nodeJs的包管理工具，用于node插件的安装，卸载，依赖管理。  
 
 使用npm安装插件，命令行执行：`npm install <name> [-g] [--save -dev]`,参数说明如下：     
-	name: 要安装的插件名字，例如 npm install jquery    
-	-g: 表示全局安装，一般会安装在 系统盘:\Users\Administrator\AppData\Roaming\npm目录下，并且写入系统环境变量，可使用命令行全局执行调用。  
+	`name`: 要安装的插件名字，例如 `npm install jquery `   
+	`-g`: 表示全局安装，一般会安装在 系统盘:`\Users\Administrator\AppData\Roaming\npm`目录下，并且写入系统环境变量，可使用命令行全局执行调用。  
 		本地安装则会安装在当前定位目录node_modules文件夹下，在代码中通过require调用。   
-	--save：将信息保存在package.json的dependencies节点中。     
-	-dev：将信息保存在package.json的devDependencies节点中。  
+	`--save`：将信息保存在package.json的dependencies节点中。     
+	`-dev`：将信息保存在package.json的devDependencies节点中。  
 
 使用npm卸载插件，`npm uninstall <name> [-g][--save-dev] `  
 
@@ -38,25 +38,25 @@ npm 是nodeJs的包管理工具，用于node插件的安装，卸载，依赖管
 	可手动新建文件package.json，也可使用 npm init自动生成。
 	package.json大致是如下格式的配置文件：
 ```javascript
-		{
-		  "name": "test",   //项目名称（必须）
-		  "version": "1.0.0",   //项目版本（必须）
-		  "description": "This is for study gulp project !",   //项目描述（必须）
-		  "homepage": "",   //项目主页
-		  "repository": {    //项目资源库
-		    "type": "git",
-		    "url": "https://git.oschina.net/xxxx"
-		  },
-		  "author": {    //项目作者信息
-		    "name": "surging",
-		    "email": "surging2@qq.com"
-		  },
-		  "license": "ISC",    //项目许可协议
-		  "devDependencies": {    //项目依赖的插件
-		    "gulp": "^3.8.11",
-		    "gulp-less": "^3.0.0"
-		  }
-		}
+	{
+	  "name": "test",   //项目名称（必须）
+	  "version": "1.0.0",   //项目版本（必须）
+	  "description": "This is for study gulp project !",   //项目描述（必须）
+	  "homepage": "",   //项目主页
+	  "repository": {    //项目资源库
+	    "type": "git",
+	    "url": "xxxx"
+	  },
+	  "author": {    //项目作者信息
+	    "name": "zjf",
+	    "email": ""
+	  },
+	  "license": "ISC",    //项目许可协议
+	  "devDependencies": {    //项目依赖的插件
+	    "gulp": "^3.8.11",
+	    "gulp-less": "^3.0.0"
+	  }
+	}
 ```
 ## 2.4 新建gulpfile.js文件
  gulpfile.js是gulp的配置文件，位于项目根目录下，一个简单的示例如下：
@@ -137,7 +137,7 @@ define(['jquery', 'angular'], function($, angular) {
 	var sex = 'mail';
 	return {
             name: name,
-			sex: sex,
+	    sex: sex,
             lowercaseName: function() {
                 return angular.lowercase(name);
             }
@@ -158,7 +158,7 @@ define('app', ['angular'], function(angular) {
 require 用于加载依赖后启动应用
 ```javascript
  require(['jquery', 'angular', 'polyfill', 'app'], function($, angular) {
-    	//angular.bootstrap(document, ['cqSolidWaste']); 
+    	
     });
 ```
 ### 3.3 参考链接
