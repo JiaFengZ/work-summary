@@ -46,8 +46,24 @@
 * 使用 string 的 match 方法进行全局匹配(-g),将只会返回所有匹配的结果，不返回分组捕获
 * 当想实现全局匹配的效果，又想进行分组捕获，可反复使用 exec 方法进行匹配
 
-## 7. js string几个正则相关的方法
-* test 
+## 7. js 几个正则相关的方法
+* test
+```javascript
+//text 校验字符
+var reg = /^[0-9]*$/;
+console.log(reg.test('1919198181')) //true
+console.log(reg.test('191919egge')) //false
+
+reg = /^\d{4}-\d{1,2}-\d{1,2}/;
+console.log(reg.test('2018-4-19')) true
+console.log(reg.test('2018-4')) false
+```
 * exec
 * match
 * replace
+```javascript
+//剔除空格
+var reg = /^\s+|\s+$/
+var exp = 'hello world';
+console.log(exp.replace(/^\s+|\s+$/g, '')) // 'helloworld'
+```
