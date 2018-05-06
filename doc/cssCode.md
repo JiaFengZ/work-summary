@@ -1,5 +1,5 @@
-关于本文
-作为一名前端开发，总是要跟css打交道，编写css也算是有一段不短的时间了，越来越发现要写出好的css代码真的不简单，标准无外乎就是简洁 易维护 扩展复用性好，但是肯定有其与众不同的地方，其中一个最大的挑战就是组织命名，找到一个有效有规律的命名方法论太重要了，否则给css命名就是恶梦！所以还是来看看怎么给css命名吧，除此之外，本文还总结了若干条规范建议。
+关于本文   
+作为一名前端开发，总是要跟css打交道，发现要写出好的css代码真的不简单，标准无外乎就是简洁、易维护、扩展复用性好，但是肯定有其与众不同的地方，其中一个最大的挑战就是组织命名，找到一个有效有规律的命名方法论太重要了，否则给css命名就是恶梦！所以还是来看看怎么给css命名吧，除此之外，本文还总结了若干条规范建议。
 
 ## 1 BEM命名方法论
 BEM命名方法论是我偶然阅读一篇文章([链接](https://segmentfault.com/a/1190000000391762))发现的。BEM 就是 block element modifier，可简称为 组织块-元素-修饰符，其命名规则如下：
@@ -48,7 +48,7 @@ BEM命名方法论是我偶然阅读一篇文章([链接](https://segmentfault.c
 
  ## 3 css的书写规范
  上面讨论了css命名，我觉得对于css书写规范来说一个好的命名占了50%，解决了命名犯难的问题，剩下50%就是一些其他的书写规范了。
- * 属性书写顺序
+ * 属性书写顺序  
  按照功能分组：布局/位置相关 → 盒子元素尺寸 → 文本相关 → 视觉效果  
 布局/位置：position / top / right / bottom / left / float / display / overflow 
 盒子元素尺寸: border / margin / padding / width / height
@@ -61,12 +61,12 @@ BEM命名方法论是我偶然阅读一篇文章([链接](https://segmentfault.c
 `margin: top right bottom left;`  `background: color image repeat attachment position;` `font: font-style (italic/normal) font-variant (small-caps) font-weight font-size/line-height font-family;`
 * 长度为0时省略长度单位
 `padding: 0` `width:0;height:0` `rotate(0)`
-* 善用好选择器
+* 善用好选择器  
 子选择器： >   
 相邻选择器 +  
 同胞选择器 ~
-属性选择器 [attribute=value]
-伪类元素 :after :before
+属性选择器 [attribute=value]  
+伪类元素 :after :before  
 几个孩子选择器：`:nth-child(n)` `:nth-of-type(n)` `:only-child` `:last-child` `:first-child`
 
  ## 4 工程化技巧

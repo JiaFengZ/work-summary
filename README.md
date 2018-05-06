@@ -4,4 +4,5 @@
 * 04.05 [项目构建的一些常用工具使用笔记](./doc/project-guide.md)
 * 04.14 [git 常用命令记录](./doc/git.md)
 * 04.14 [关于css编写的思考总结](./doc/cssCode.md)
+* 04.18 [正则表达式笔记](./doc/RegExp.md)
 * 05.16 [一个用canvas实现的射击小游戏](https://jiafengz.github.io/work-summary/plane-game/index.html)
