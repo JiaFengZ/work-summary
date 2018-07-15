@@ -1,7 +1,7 @@
 因一个项目需要，需要把地图数据文件转换成 esriJson 文件，以便通过 openlayer 加载 esriJson 矢量数据图层。记录如下：
 * 安装 ArcGIS Pro
 * 安装完毕后，打开软件，如图选择新建一个空的工程模板<br/>
-![创建工程](../images/arcgis/createProject.png)
+![创建工程](../images/arcgis/newProject.png)
 * 新建工程后，选择地图工具栏，点击添加数据，在弹出的面板中选择要做转换的地图数据文件<br/>
 ![添加数据](../images/arcgis/addData.png)
 ![添加数据](../images/arcgis/selectLayer.png)
