@@ -9,7 +9,7 @@
 ![图层](../images/arcgis/layers.png)
 * 添加完毕后，在预览面板中看到渲染的地图
 * 点击选择 点 这个图层，在右侧弹出地图处理工具箱，选择转换工具下面的JSON工具，选择 `要素转JSON`<br/>
-![添加数据](../images/arcgis/transfrom.png)
+![添加数据](../images/arcgis/transform.png)
 * 填写转换参数：选择要转换的要素，填写导出的 JSON 文件名<br/>
 ![添加数据](../images/arcgis/params.png)
 * 点击运行，运行完毕后，就在文件目录下看到导出的 json 文件了
