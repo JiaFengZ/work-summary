@@ -47,9 +47,10 @@ vue 就是一个单文件组件 `<script></script><template></template><style></
 
 # 2 总结：什么是 MVVM 框架？
 MVVM 由以下三个内容组成
-• View：界面
-• Model：数据模型
-• ViewModel：作为桥梁负责沟通 View 和 Model
+* View：界面
+* Model：数据模型
+* ViewModel：作为桥梁负责沟通 View 和 Model
+
 在 JQuery 时期，如果需要刷新 UI 时，需要先取到对应的 DOM 再更新 UI，这样
 数据和业务的逻辑就和页面有强耦合。
 在 MVVM 中，UI 是通过数据驱动的，数据一旦改变就会相应的刷新对应的 UI，UI
@@ -59,8 +60,8 @@ MVVM 由以下三个内容组成
 改变另一方，并且可以将一些可复用的逻辑放在一个 ViewModel 中，让多个 View 复
 用这个 ViewModel
 
-vue 和 angularjs、Angular都可称之为 MVVM 框架
-React 是单向数据流的理念，不存在双向数据绑定的概念，需要主动setState从而驱动更新界面。（代码操作层面上）
+* vue 和 angularjs、Angular都可称之为 MVVM 框架 
+* React 是单向数据流的理念，不存在双向数据绑定的概念，需要主动setState从而驱动更新界面。（代码操作层面上）
 
 # 3 Angular 前瞻（(来源[https://www.angular.cn/docs])）
 
