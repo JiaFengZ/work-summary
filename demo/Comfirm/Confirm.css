@@ -1,0 +1,60 @@
+.modal-mask {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  height: 100%;
+  background-color: rgba(0,0,0,0.45);
+}
+
+.modal-container {
+  box-sizing: border-box;
+  padding: 20px;
+  color: rgba(0,0,0,0.65);
+  font-size: 14px;
+  font-feature-settings: "tnum";
+  font-variant: tabular-nums;
+  line-height: 1.5;
+  list-style: none;
+  z-index: 1001;
+  top: 100px;
+  width: 400px;
+  margin: 0 auto;
+  padding-bottom: 24px;
+  position: relative;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.modal-footer {
+  margin: 10px 0;
+}
+
+.modal-footer button {
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  font-weight: 400;
+  white-space: nowrap;
+  text-align: center;
+  background-image: none;
+  border: 1px solid transparent;
+  -webkit-box-shadow: 0 2px 0 rgba(0,0,0,0.015);
+  box-shadow: 0 2px 0 rgba(0,0,0,0.015);
+  cursor: pointer;
+  margin: 0 5px;
+  border-radius: 4px;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1890ff;
+  border-color: #1890ff;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+  -webkit-box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+  box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+}
